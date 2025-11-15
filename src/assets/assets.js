@@ -69,3 +69,32 @@ export const assets = {
   star,
   startPeople,
 };
+
+
+// ===== serviceFeatures Data Array =====
+export const serviceFeatures = [
+  {
+    id: 1,
+    heading: "Booking Pick & Drop",
+    details:"From personal packages to business shipments — we deliver on time, every time.",
+    img: bookingIcon,
+  },
+  {
+    id: 2,
+    heading: "Cash On Delivery",
+    details:"From personal packages to business shipments — we deliver on time, every time.",
+    img: bookingIcon,
+  },
+  {
+    id: 3,
+    heading: "Delivery Hub",
+    details:"From personal packages to business shipments — we deliver on time, every time.",
+    img: bookingIcon,
+  },
+  {
+    id: 4,
+    heading: "Booking SME & Corporate",
+    details:"From personal packages to business shipments — we deliver on time, every time.",
+    img: bookingIcon,
+  },
+];
