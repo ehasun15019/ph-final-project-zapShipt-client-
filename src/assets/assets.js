@@ -71,8 +71,8 @@ export const assets = {
 };
 
 
-// ===== serviceFeatures Data Array =====
-export const serviceFeatures = [
+// ===== HowItsWorks Data Array =====
+export const HowItsWorks = [
   {
     id: 1,
     heading: "Booking Pick & Drop",
@@ -96,5 +96,52 @@ export const serviceFeatures = [
     heading: "Booking SME & Corporate",
     details:"From personal packages to business shipments — we deliver on time, every time.",
     img: bookingIcon,
+  },
+];
+
+
+// ===== Services Array =====
+export const services = [
+  {
+    id: 1,
+    heading: "Express & Standard Delivery",
+    details:
+      "We deliver parcels within 24–72 hours in Dhaka, Chittagong, Sylhet, Khulna, and Rajshahi. Express delivery available in Dhaka within 4–6 hours from pick-up to drop-off.",
+    img: service,
+  },
+  {
+    id: 2,
+    heading: "Nationwide Delivery",
+    details:
+      "We deliver parcels nationwide with home delivery in every district, ensuring your products reach customers within 48–72 hours.",
+    img: service,
+  },
+  {
+    id: 3,
+    heading: "Fulfillment Solution",
+    details:
+      "We also offer customized service with inventory management support, online order processing, packaging, and after sales support.",
+    img: service,
+  },
+  {
+    id: 4,
+    heading: "Cash on Home Delivery",
+    details:
+      "100% cash on delivery anywhere in Bangladesh with guaranteed safety of your product.",
+    img: service,
+  },
+  {
+    id: 5,
+    heading: "Corporate Service / Contract In Logistics",
+    details:
+      "Customized corporate services which include warehouse and inventory management support.",
+    img: service,
+  },
+  {
+    id: 6,
+    heading: "Parcel Return",
+    details:
+      "Through our reverse logistics facility, we allow end customers to return or exchange their products with online business merchants.",
+    img: service,
   },
 ];

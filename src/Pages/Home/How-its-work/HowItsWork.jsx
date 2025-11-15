@@ -1,5 +1,5 @@
 import React from "react";
-import { serviceFeatures } from "../../../assets/assets";
+import { HowItsWorks, } from "../../../assets/assets";
 
 const HowItsWork = () => {
   return (
@@ -7,7 +7,7 @@ const HowItsWork = () => {
       <h4 className="font-bold text-3xl text-center md:text-left">How it Works</h4>
 
       <div className="card-section grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-5 justify-items-center gap-4">
-        {serviceFeatures.map((item) => {
+        {HowItsWorks.map((item) => {
           return (
             <div className="card shadow-sm rounded-2xl w-70 border border-gray-300" key={item.id}>
               <div className="card-body">
