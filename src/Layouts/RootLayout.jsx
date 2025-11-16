@@ -7,10 +7,16 @@ const RootLayout = () => {
   return (
     <div className="max-w-7xl mx-auto">
       <Navbar></Navbar>
-      <Outlet></Outlet>
+
+      <main className="">
+        <Outlet></Outlet>
+      </main>
+
       <Footer></Footer>
     </div>
   );
 };
 
 export default RootLayout;
+
+// bg-[#F0F0F0]
