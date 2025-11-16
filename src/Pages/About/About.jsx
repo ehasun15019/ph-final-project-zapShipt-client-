@@ -12,7 +12,7 @@ const About = () => {
         </p>
       </div>
 
-      <div className="space-y-3 mt-6 text-gray-600">
+      <div className="space-y-3 mt-6 text-gray-600 pb-9">
         <p>
           We started with a simple promise — to make parcel delivery fast,
           reliable, and stress-free. Over the years, our commitment to real-time

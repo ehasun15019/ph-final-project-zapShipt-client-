@@ -18,6 +18,7 @@ import safeDelivery from "./safe-delivery.png";
 import service from "./service.png";
 import tinyDeliveryman from "./tiny-deliveryman.png";
 import warehouses from "./warehouses.json";
+import Error from "./Error.png"
 
 // Banners
 import banner1 from "./banner/banner1.png";
@@ -54,6 +55,7 @@ export const assets = {
   service,
   tinyDeliveryman,
   warehouses,
+  Error,
 
   // Banners
   banner1,
