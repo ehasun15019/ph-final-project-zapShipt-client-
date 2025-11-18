@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import useAuth from "../../../Hooks/useAuth";
 import toast from "react-hot-toast";
 import SocialLogin from "../Social-login/SocialLogin";
@@ -16,6 +16,10 @@ const Login = () => {
   const { LoginUser, sendPasswordLink } = useAuth();
   const email = watch("email");
 
+  // for redirect
+  const location = useLocation();
+  const navigate = useNavigate();
+
   // handle login
   const handleLogin = (data) => {
     console.log(data);
@@ -23,6 +27,8 @@ const Login = () => {
       .then((getUser) => {
         console.log(getUser.user);
         toast.success("User login successfully");
+        // for redirect
+        navigate(location?.state || '/')
       })
       .catch((err) => {
         toast.error(err.message);
@@ -124,7 +130,7 @@ const Login = () => {
           {/* Register Link */}
           <p className="text-sm text-gray-600 text-center mt-3">
             Don't have an account?
-            <Link to="/register" className="text-blue-500 font-medium ms-1">
+            <Link to="/register" className="text-blue-500 font-medium ms-1" state={location.state}>
               Register
             </Link>
           </p>

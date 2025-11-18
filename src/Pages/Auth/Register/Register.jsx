@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import useAuth from "../../../Hooks/useAuth";
 import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
@@ -16,6 +16,9 @@ const Register = () => {
   } = useForm();
 
   const { registerUser, updateUserProfile } = useAuth();
+  // for redirect
+  const location = useLocation();
+  const navigate = useNavigate();
 
   // handle register function
   const handleRegister = (data) => {
@@ -33,8 +36,7 @@ const Register = () => {
         }`;
 
         // 2. fetch data with axios
-        axios.post(image_Api_Url, fromData)
-        .then((res) => {
+        axios.post(image_Api_Url, fromData).then((res) => {
           console.log("after image upload", res.data.data.url);
 
           // update user profile for photo
@@ -44,12 +46,15 @@ const Register = () => {
           };
 
           updateUserProfile(userProfile)
-          .then(() => {
-            console.log('user profile updated done')
-          })
-          .catch((err) => {
-            console.log(err.message)
-          })
+            .then(() => {
+              console.log("user profile updated done");
+
+              // for redirect
+              navigate(location?.state || "/");
+            })
+            .catch((err) => {
+              console.log(err.message);
+            });
         });
 
         toast.success("You are registered successfully");
@@ -149,7 +154,11 @@ const Register = () => {
           {/* Login Link */}
           <p className="text-sm text-gray-600">
             Already have an account?
-            <Link to="/login" className="text-blue-500 hover:underline ms-1">
+            <Link
+              to="/login"
+              className="text-blue-500 hover:underline ms-1"
+              state={location.state}
+            >
               Login
             </Link>
           </p>

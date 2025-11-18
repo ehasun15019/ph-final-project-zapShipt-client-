@@ -7,6 +7,8 @@ import Error from "../Pages/Error/Error";
 import AuthLayout from "../Layouts/AuthLayout";
 import Login from "../Pages/Auth/Login/Login";
 import Register from "../Pages/Auth/Register/Register";
+import Rider from "../Pages/Rider/Rider";
+import PrivateRoutes from "./PrivateRoutes";
 
 export const router = createBrowserRouter([
   {
@@ -29,6 +31,12 @@ export const router = createBrowserRouter([
           return res.json()
         })
       },
+      {
+        path: "rider",
+        element: <PrivateRoutes>
+          <Rider></Rider>
+        </PrivateRoutes>
+      }
     ],
   },
   {
