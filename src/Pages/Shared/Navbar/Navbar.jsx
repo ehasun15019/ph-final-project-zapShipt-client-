@@ -6,18 +6,17 @@ import useAuth from "../../../Hooks/useAuth";
 import toast from "react-hot-toast";
 
 const Navbar = () => {
-
-  const {user, logOut} = useAuth();
+  const { user, logOut } = useAuth();
 
   const handleLogOut = () => {
     logOut()
-    .then(() => {
-      toast.success("Log out successfully")
-    })
-    .catch((err) => {
-      toast.error(err.massage)
-    })
-  }
+      .then(() => {
+        toast.success("Log out successfully");
+      })
+      .catch((err) => {
+        toast.error(err.massage);
+      });
+  };
 
   const links = (
     <>
@@ -54,10 +53,18 @@ const Navbar = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
-      <div className="navbar-end">
-        {
-          user ? <a className="btn" onClick={handleLogOut}>Log Out</a> : <Link to="/login" className="btn">Login</Link>
-        }
+      <div className="navbar-end flex gap-4">
+        {user ? (
+          <a className="btn" onClick={handleLogOut}>
+            Log Out
+          </a>
+        ) : (
+          <Link to="/login" className="btn">
+            Login
+          </Link>
+        )}
+
+        <Link to="/" className="btn btn-primary text-black">Be a rider</Link>
       </div>
     </div>
   );
