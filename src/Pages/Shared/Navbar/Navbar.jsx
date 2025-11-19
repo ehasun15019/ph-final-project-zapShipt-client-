@@ -6,7 +6,7 @@ import useAuth from "../../../Hooks/useAuth";
 import toast from "react-hot-toast";
 
 const Navbar = () => {
-  const { user, logOut } = useAuth();
+  const { user, logOut } = useAuth(); // 62-1 min: 4.22
 
   const handleLogOut = () => {
     logOut()
