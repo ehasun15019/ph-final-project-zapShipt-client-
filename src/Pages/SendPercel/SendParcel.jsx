@@ -62,7 +62,8 @@ const SendParcel = () => {
       }
     }
 
-    console.log("const", cost);
+    // console.log("const", cost);
+    data.cost = cost;
 
     Swal.fire({
       title: "Agree with the cost?",
