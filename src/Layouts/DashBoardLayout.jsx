@@ -3,6 +3,7 @@ import { IoHome } from "react-icons/io5";
 import { FaTruckMoving } from "react-icons/fa6";
 import { TbLayoutSidebarLeftExpand } from "react-icons/tb";
 import { Link, NavLink, Outlet } from "react-router";
+import { MdWorkHistory } from "react-icons/md";
 
 const DashBoardLayout = () => {
   return (
@@ -59,6 +60,18 @@ const DashBoardLayout = () => {
               >
                 <FaTruckMoving size={20} />
                 <span className="is-drawer-close:hidden">My Parcel</span>
+              </Link>
+            </li>
+
+            {/* Payment History */}
+            <li>
+              <Link
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                to="/dashboard/payment-history"
+                data-tip="Payment History"
+              >
+                <MdWorkHistory size={20} />
+                <span className="is-drawer-close:hidden">Payment History</span>
               </Link>
             </li>
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm, useWatch } from "react-hook-form";
-import { useLoaderData } from "react-router";
+import { useLoaderData, useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import useAuth from "../../Hooks/useAuth";
@@ -14,7 +14,10 @@ const SendParcel = () => {
   } = useForm();
 
   const axiosSecure = useAxiosSecure();
-  const {user} = useAuth();
+  const { user } = useAuth();
+
+  // redirect to payment
+  const navigate = useNavigate();
 
   // data loading from router.jsx
   const serviceCenter = useLoaderData();
@@ -72,23 +75,22 @@ const SendParcel = () => {
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, take it!",
+      confirmButtonText: "confirm and continue payment!",
     }).then((result) => {
       if (result.isConfirmed) {
-
         // save the parcel info to the database
-        axiosSecure.post('/parcels', data)
-        .then((res) => {
-          return(
-             console.log('after saving parcel', res.data)
-          )
-        })
-
-        // Swal.fire({
-        //   title: "confirmed",
-        //   text: "Your charge is confirmed",
-        //   icon: "success",
-        // });
+        axiosSecure.post("/parcels", data).then((res) => {
+          if (res.data.insertedId) {
+            navigate('/dashboard/my-parcels');
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "Parcel has created. Please pay",
+              showCancelButton: false,
+              timer: 2500,
+            });
+          }
+        });
       }
     });
   };
@@ -187,7 +189,9 @@ const SendParcel = () => {
                   defaultValue="Pick a Region"
                   className="select w-full"
                 >
-                  <option disabled={true} value="Pick a Region">Pick a Region</option>
+                  <option disabled={true} value="Pick a Region">
+                    Pick a Region
+                  </option>
                   {regions.map((r, index) => (
                     <option key={index} value={r}>
                       {r}
@@ -204,7 +208,9 @@ const SendParcel = () => {
                   defaultValue="Pick a district"
                   className="select w-full"
                 >
-                  <option disabled={true} value="Pick a district">Pick a District</option>
+                  <option disabled={true} value="Pick a district">
+                    Pick a District
+                  </option>
                   {districtByRegion(senderRegion).map((d, index) => (
                     <option key={index} value={d}>
                       {d}
@@ -255,7 +261,9 @@ const SendParcel = () => {
                   defaultValue="Pick a Region"
                   className="select w-full"
                 >
-                  <option disabled={true} value="Pick a Region">Pick a Region</option>
+                  <option disabled={true} value="Pick a Region">
+                    Pick a Region
+                  </option>
                   {regions.map((r, index) => (
                     <option key={index} value={r}>
                       {r}
@@ -272,7 +280,9 @@ const SendParcel = () => {
                   defaultValue="Pick a district"
                   className="select w-full"
                 >
-                  <option disabled={true} value="Pick a district">Pick a District</option>
+                  <option disabled={true} value="Pick a district">
+                    Pick a District
+                  </option>
                   {districtByRegion(receiverRegion).map((d, index) => {
                     return (
                       <option key={index} value={d}>
