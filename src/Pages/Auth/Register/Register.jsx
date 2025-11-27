@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
 import SocialLogin from "../Social-login/SocialLogin";
 import axios from "axios";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const Register = () => {
   const {
@@ -16,18 +17,18 @@ const Register = () => {
   } = useForm();
 
   const { registerUser, updateUserProfile } = useAuth();
+  const axiosSecure = useAxiosSecure();
+
   // for redirect
   const location = useLocation();
   const navigate = useNavigate();
 
   // handle register function
   const handleRegister = (data) => {
-    console.log(data.photo[0]);
     const profileImage = data.photo[0];
 
     registerUser(data.email, data.password)
-      .then((getUser) => {
-        console.log(getUser.user);
+      .then(() => {
         // 1. store the image with from data
         const fromData = new FormData();
         fromData.append("image", profileImage);
@@ -37,13 +38,27 @@ const Register = () => {
 
         // 2. fetch data with axios
         axios.post(image_Api_Url, fromData).then((res) => {
-          console.log("after image upload", res.data.data.url);
+          const photoUrl = res.data.data.url;
 
           // update user profile for photo
           const userProfile = {
             displayName: data.name,
-            photoURL: res.data.data.url,
+            photoURL: photoUrl,
           };
+
+          // create user in the database
+          const userInfo = {
+            email: data.email,
+            displayName: data.name,
+            photoURL: photoUrl,
+          };
+          axiosSecure.post("/users", userInfo)
+          .then((res) => {
+            if(res.data.insertedId) {
+              console.log('user created in the database')
+            }
+          })
+
 
           updateUserProfile(userProfile)
             .then(() => {

@@ -1,11 +1,15 @@
 import React from "react";
 import { IoHome } from "react-icons/io5";
-import { FaTruckMoving } from "react-icons/fa6";
+import { FaTruckMoving, FaUsers } from "react-icons/fa6";
 import { TbLayoutSidebarLeftExpand } from "react-icons/tb";
 import { Link, NavLink, Outlet } from "react-router";
 import { MdWorkHistory } from "react-icons/md";
+import { RiEBikeFill } from "react-icons/ri";
+import userRole from "../Hooks/useUserRole";
 
 const DashBoardLayout = () => {
+  const { role } = userRole();
+
   return (
     <div className="drawer lg:drawer-open bg-secondary">
       <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
@@ -74,6 +78,36 @@ const DashBoardLayout = () => {
                 <span className="is-drawer-close:hidden">Payment History</span>
               </Link>
             </li>
+
+            {/* Riders History */}
+            <li>
+              <Link
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                to="/dashboard/approve-riders"
+                data-tip="Approve Riders"
+              >
+                <RiEBikeFill size={20} />
+                <span className="is-drawer-close:hidden">Approve Riders</span>
+              </Link>
+            </li>
+
+            {role === "admin" && (
+              <>
+                {/* user management */}
+                <li>
+                  <Link
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    to="/dashboard/user-management"
+                    data-tip="User Management"
+                  >
+                    <FaUsers size={20} />
+                    <span className="is-drawer-close:hidden">
+                      User Management
+                    </span>
+                  </Link>
+                </li>
+              </>
+            )}
 
             {/* example */}
             {/* <li>

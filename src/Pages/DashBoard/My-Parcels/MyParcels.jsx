@@ -82,6 +82,8 @@ const MyParcels = () => {
               <th>Name</th>
               <th>Cost</th>
               <th>Payment</th>
+              <th>Tracking Id</th>
+              <th>Transaction Id</th>
               <th>Delivery Status</th>
               <th>Action</th>
             </tr>
@@ -99,6 +101,8 @@ const MyParcels = () => {
                     : <button onClick={() => handlePayment(item)} className="btn btn-primary btn-sm text-black">Pay</button>
                     }
                     </td>
+                  <td>{item.trackingId}</td> 
+                  <td>{item.transactionId}</td>
                   <td>{item.deliveryStatus}</td> 
 
                   <td className="flex gap-2">

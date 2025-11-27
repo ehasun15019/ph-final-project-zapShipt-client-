@@ -34,7 +34,7 @@ const PaymentHistory = () => {
           <tbody>
             {payments.map((item, index) => {
               return (
-                <tr>
+                <tr key={item._id}>
                   <th>{index + 1}</th>
                   <td>{new Date(item.paidAt).toLocaleString()}</td>
                   <td>{item.amount}</td>

@@ -16,6 +16,9 @@ import Payment from "../Pages/DashBoard/Payment/Payment";
 import PaymentSuccess from "../Pages/DashBoard/Payment/PaymentSuccess";
 import PaymentCancelled from "../Pages/DashBoard/Payment/PaymentCancelled";
 import PaymentHistory from "../Pages/DashBoard/Payment/PaymentHistory/PaymentHistory";
+import ApproveRiders from "../Pages/DashBoard/Approve-Riders/ApproveRiders";
+import UserManagement from "../Pages/DashBoard/User-Management/UserManagement";
+import AdminRoute from "./AdminRoute";
 
 export const router = createBrowserRouter([
   {
@@ -58,6 +61,10 @@ export const router = createBrowserRouter([
             <Rider></Rider>
           </PrivateRoutes>
         ),
+        loader: () =>
+          fetch("/serviceCenter.json").then((res) => {
+            return res.json();
+          }),
       },
     ],
   },
@@ -93,7 +100,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "payment-history",
-        Component: PaymentHistory
+        Component: PaymentHistory,
       },
       {
         path: "payment-success",
@@ -103,6 +110,16 @@ export const router = createBrowserRouter([
         path: "payment-cancelled",
         Component: PaymentCancelled,
       },
+      {
+        path: "approve-riders",
+        // Component: ApproveRiders
+        element: <AdminRoute><ApproveRiders></ApproveRiders></AdminRoute>
+      },
+      {
+        path: "user-management",
+        // Component: UserManagement
+        element: <AdminRoute><UserManagement></UserManagement></AdminRoute>
+      }
     ],
   },
 ]);
