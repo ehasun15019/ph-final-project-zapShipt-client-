@@ -1,14 +1,16 @@
 import React from "react";
 import { IoHome } from "react-icons/io5";
 import { FaTruckMoving, FaUsers } from "react-icons/fa6";
-import { TbLayoutSidebarLeftExpand } from "react-icons/tb";
+import { TbBikeFilled, TbLayoutSidebarLeftExpand } from "react-icons/tb";
 import { Link, NavLink, Outlet } from "react-router";
 import { MdWorkHistory } from "react-icons/md";
 import { RiEBikeFill } from "react-icons/ri";
 import userRole from "../Hooks/useUserRole";
+import useAuth from "../Hooks/useAuth";
 
 const DashBoardLayout = () => {
   const { role } = userRole();
+  const { user } = useAuth();
 
   return (
     <div className="drawer lg:drawer-open bg-secondary">
@@ -24,7 +26,10 @@ const DashBoardLayout = () => {
             {/* Sidebar toggle icon */}
             <TbLayoutSidebarLeftExpand />
           </label>
-          <div className="px-4">ZapShift Dashboard</div>
+          <div className="px-4">
+            <h3 className="text-2xl">ZapShift Dashboard</h3>
+            <p className="text-red-500">{user.displayName}</p>
+          </div>
         </nav>
         {/* Page content here */}
 
@@ -79,18 +84,6 @@ const DashBoardLayout = () => {
               </Link>
             </li>
 
-            {/* Riders History */}
-            <li>
-              <Link
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                to="/dashboard/approve-riders"
-                data-tip="Approve Riders"
-              >
-                <RiEBikeFill size={20} />
-                <span className="is-drawer-close:hidden">Approve Riders</span>
-              </Link>
-            </li>
-
             {role === "admin" && (
               <>
                 {/* user management */}
@@ -103,6 +96,34 @@ const DashBoardLayout = () => {
                     <FaUsers size={20} />
                     <span className="is-drawer-close:hidden">
                       User Management
+                    </span>
+                  </Link>
+                </li>
+
+                {/* Approve Riders */}
+                <li>
+                  <Link
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    to="/dashboard/approve-riders"
+                    data-tip="Approve Riders"
+                  >
+                    <RiEBikeFill size={20} />
+                    <span className="is-drawer-close:hidden">
+                      Approve Riders
+                    </span>
+                  </Link>
+                </li>
+
+                {/* Assign Riders */}
+                <li>
+                  <Link
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    to="/dashboard/assign-riders"
+                    data-tip="Assign Riders"
+                  >
+                    <TbBikeFilled size={20} />
+                    <span className="is-drawer-close:hidden">
+                      Assign Riders
                     </span>
                   </Link>
                 </li>

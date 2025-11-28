@@ -79,7 +79,8 @@ const ApproveRiders = () => {
               <th></th>
               <th>Name</th>
               <th>email</th>
-              <th>Status</th>
+              <th>Application Status</th>
+              <th>Work Status</th>
               <th>District</th>
               <th>Actions</th>
             </tr>
@@ -104,6 +105,8 @@ const ApproveRiders = () => {
                       {item.status}
                     </p>
                   </td>
+
+                  <td>{item.workStatus}</td>
 
                   <td>{item.district}</td>
                   <td className="flex gap-2">
